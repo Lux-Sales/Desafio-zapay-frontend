@@ -1,8 +1,8 @@
+import React from "react";
+import MainPage from "./pages/Main";
 
-function App() {
-  return (
-    <h1>ola</h1>
-  );
-}
+const App: React.FC = () => {
+  return <MainPage />;
+};
 
 export default App;

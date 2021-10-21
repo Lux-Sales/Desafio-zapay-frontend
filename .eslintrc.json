@@ -31,10 +31,13 @@
         "error",
         "ignorePackages",
         {
-          "ts": "never"
+          "ts": "never",
+          "tsx": "never"
         }
       ],
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "tsx"] }]
+
     },
     "settings": {
       "import/resolver": {
