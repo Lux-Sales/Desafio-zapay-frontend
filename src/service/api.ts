@@ -13,7 +13,7 @@ export interface Launch {
       campaign: string;
       launch: string;
       media: string;
-      recovery: null;
+      recovery: string;
     };
     flickr: {
       small: string[];
@@ -30,7 +30,6 @@ export interface Launch {
   failures: string[];
   details: string;
   crew: string[];
-  ships: string[];
   capsules: string[];
   launchpad: string;
   flight_number: string;

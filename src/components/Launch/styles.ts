@@ -17,4 +17,16 @@ export const Container = styled.div`
   .header-item {
     margin: 10px;
   }
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+  }
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+  }
 `;

@@ -12,6 +12,17 @@ const MainPage: React.FC = () => {
     switch (option) {
       case 0:
         setIndex(0);
+        const latestLaunch = await getLastLaunch();
+        setLaunch(latestLaunch);
+        break;
+      case 1:
+        setIndex(1);
+        break;
+      case 2:
+        setIndex(2);
+        break;
+      case 3:
+        setIndex(3);
         const nextLaunch = await getNextLaunch();
         setLaunch(nextLaunch);
         break;
@@ -39,7 +50,7 @@ const MainPage: React.FC = () => {
           <span className="mdc-tab__text-label">Próximo lançamento</span>
         </Tab>
       </TabBar>
-      {index === 0 && <LaunchComponent launch={launch} />}
+      {(index === 0 || index === 3) && <LaunchComponent launch={launch} />}
     </Container>
   );
 };
