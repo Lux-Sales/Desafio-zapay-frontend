@@ -14,8 +14,9 @@ export const getImagesInLaunch = (launch: Launch | undefined) => {
     const flickrSmallValues = launch.links.flickr.small;
     const flickrOriginalValues = launch.links.flickr.original;
     const patchValue = launch.links.patch.large;
-    const result = [...flickrOriginalValues, ...flickrSmallValues, patchValue];
-    return result;
+    return [...flickrOriginalValues, ...flickrSmallValues, patchValue].filter(
+      (item) => !!item
+    );
   }
   return [];
 };

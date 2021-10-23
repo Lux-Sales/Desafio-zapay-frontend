@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Container } from "./styles";
 import { Launch } from "../../service/api";
 import {
@@ -18,13 +17,11 @@ export const LaunchComponent = (props: Props) => {
   const { launch } = props;
   const [imagesAddress, setImagesAddress] = useState<string[]>();
   const [articlesAddress, setArticlesAddress] = useState<string[]>();
-
   useEffect(() => {
     const images = getImagesInLaunch(launch);
     setImagesAddress(images);
     const articles = getArticlesInLaunch(launch);
     setArticlesAddress(articles);
-    console.log(articlesAddress);
   }, [launch]);
 
   return (
@@ -57,31 +54,33 @@ export const LaunchComponent = (props: Props) => {
         {launch?.failures.length !== 0 && (
           <ul>
             Falhas:
-            {launch?.failures.forEach((failure) => {
-              <li>{failure}</li>;
+            {launch?.failures.map((failure) => {
+              return <li>{failure}</li>;
             })}
           </ul>
         )}
         {launch?.capsules.length !== 0 && (
           <ul>
             Cápsulas:
-            {launch?.capsules.forEach((capsule) => {
-              <li>{capsule}</li>;
+            {launch?.capsules.map((capsule) => {
+              return <li>{capsule}</li>;
             })}
           </ul>
         )}
         {launch?.crew.length !== 0 && (
-          <ul>
-            Tripulação:
-            {launch?.crew.forEach((crewMember) => {
-              <li>{crewMember}</li>;
-            })}
-          </ul>
+          <>
+            <span>Tripulação:</span>
+            <ul>
+              {launch?.crew.map((crewMember) => {
+                return <li>{crewMember.role}</li>;
+              })}
+            </ul>
+          </>
         )}
       </body>
       <footer>
         Links úteis:
-        {imagesAddress && imagesAddress?.length > 1 && (
+        {imagesAddress && imagesAddress?.length > 0 && (
           <>
             <span>Imagens:</span>
             <ul>
@@ -115,17 +114,20 @@ export const LaunchComponent = (props: Props) => {
             </ul>
           </>
         )}
-        <span>Kit de imprensa:</span>
-        <li>{launch?.links.presskit}</li>
-        <span>Vídeo do lançamento:</span>
-        <li>
-          <a href={launch?.links.webcast}>Vídeo</a>
-        </li>
-        abubu
-        {imagesAddress &&
-          imagesAddress.forEach((address) => {
-            <span>{address}</span>;
-          })}
+        {launch?.links.presskit && (
+          <>
+            <span>Kit de imprensa:</span>
+            <li>{launch?.links.presskit}</li>
+          </>
+        )}
+        {launch?.links.webcast && (
+          <>
+            <span>Vídeo do lançamento:</span>
+            <li>
+              <a href={launch?.links.webcast}>Vídeo</a>
+            </li>
+          </>
+        )}
       </footer>
     </Container>
   );
