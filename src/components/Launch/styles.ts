@@ -20,8 +20,13 @@ export const Container = styled.div`
   body {
     display: flex;
     flex-direction: column;
-    justify-content: left;
     width: 100%;
+    span {
+      margin: 5px;
+    }
+    .detailDiv {
+      margin: 5px;
+    }
   }
   footer {
     display: flex;

@@ -27,5 +27,8 @@ export const Container = styled.div`
   }
   .launch-item {
     margin: 1em 1em;
+    padding: 5px;
+    border: solid 3px #5879e6;
+    border-radius: 15px;
   }
 `;

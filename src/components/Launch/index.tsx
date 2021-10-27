@@ -53,7 +53,7 @@ export const LaunchComponent = (props: Props) => {
         </span>
         {launch?.tbd && <span>tbd: {launch.tbd}</span>}
         {launch?.details && (
-          <div>
+          <div className="detailDiv">
             <label htmlFor="detailSpan">Detalhes do lançamento:</label>
             <br />
             <span className="detailSpan">{launch?.details}</span>
