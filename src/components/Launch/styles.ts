@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   .titleDiv {
     display: flex;
     ul {
@@ -39,5 +38,17 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: left;
     width: 100%;
+  }
+  .icon-item {
+    margin-left: 30px;
+  }
+  .icon-title {
+    margin: 15px;
+  }
+  .fairing-div {
+    margin: 5px;
+    ul {
+      margin-left: 40px;
+    }
   }
 `;

@@ -109,10 +109,10 @@ export const LaunchComponent = (props: Props) => {
         )}
         {launch?.capsules.length !== 0 && (
           <ul>
-            <FiDatabase title="capsules" />
+            <FiDatabase title="capsules" className="icon-title" />
             {launch?.capsules.map((capsule) => {
               return (
-                <li>
+                <li className="icon-item">
                   <FiHardDrive title={capsule} />
                 </li>
               );
@@ -121,45 +121,39 @@ export const LaunchComponent = (props: Props) => {
         )}
         {launch?.fairings && (
           <>
-            <span>Detalhes da carenagem:</span>
-            <ul>
-              {launch?.fairings.recovered && (
-                <li>
-                  Recuperada:{" "}
-                  {launch?.fairings.recovered ? <FiCheck /> : <FiX />}
-                </li>
-              )}
-              {launch?.fairings.reused && (
-                <li>
-                  Reutilizada: {launch?.fairings.reused ? <FiCheck /> : <FiX />}
-                </li>
-              )}
-              {launch?.fairings.recovery_attempt && (
-                <li>
-                  Tentativa de recuperação:
-                  {launch?.fairings.recovery_attempt ? <FiCheck /> : <FiX />}
-                </li>
-              )}
-              {launch.fairings.ships && launch.fairings.ships.length > 0 && (
-                <>
-                  <ul>
-                    {launch.fairings.ships.map((ship) => {
-                      return <li>{ship}</li>;
-                    })}
-                  </ul>
-                </>
-              )}
-            </ul>
+            <div className="fairing-div">
+              <span>Detalhes da carenagem:</span>
+              <ul>
+                {launch?.fairings.recovered && (
+                  <li>
+                    Recuperada:{" "}
+                    {launch?.fairings.recovered ? <FiCheck /> : <FiX />}
+                  </li>
+                )}
+                {launch?.fairings.reused && (
+                  <li>
+                    Reutilizada:{" "}
+                    {launch?.fairings.reused ? <FiCheck /> : <FiX />}
+                  </li>
+                )}
+                {launch?.fairings.recovery_attempt && (
+                  <li>
+                    Tentativa de recuperação:
+                    {launch?.fairings.recovery_attempt ? <FiCheck /> : <FiX />}
+                  </li>
+                )}
+              </ul>
+            </div>
           </>
         )}
         {launch?.ships && launch?.ships.length > 0 && (
           <>
-            <FiCpu title="ships" />
+            <FiCpu title="ships" className="icon-title" />
             <ul>
               {launch?.ships.map((ship) => {
                 return (
                   <li>
-                    <FiDisc title={ship} />
+                    <FiDisc title={ship} className="icon-item" />
                   </li>
                 );
               })}
@@ -207,13 +201,13 @@ export const LaunchComponent = (props: Props) => {
         Links úteis:
         {imagesAddress && imagesAddress?.length > 0 && (
           <>
-            <FiBookOpen title="images" />
+            <FiBookOpen title="images" className="icon-title" />
             <ul>
               {imagesAddress.map((address, index) => {
                 if (address) {
                   return (
                     <a href={address} target="_blank" rel="noreferrer">
-                      <li>Imagem {index + 1} </li>
+                      <li className="icon-item">Imagem {index + 1} </li>
                     </a>
                   );
                 }
@@ -247,8 +241,8 @@ export const LaunchComponent = (props: Props) => {
         )}
         {launch?.links.webcast && (
           <>
-            <FiCamera title="video" />
-            <li>
+            <FiCamera title="video" className="icon-title" />
+            <li className="icon-item">
               <a href={launch?.links.webcast}>Vídeo</a>
             </li>
           </>
