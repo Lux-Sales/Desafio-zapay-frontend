@@ -146,10 +146,10 @@ export const LaunchComponent = (props: Props) => {
           <li>{launch?.date_unix}</li>
           <li>{launch?.date_utc}</li>
           {launch?.static_fire_date_unix && (
-            <li>launch?.static_fire_date_unix</li>
+            <li>{launch?.static_fire_date_unix}</li>
           )}
           {launch?.static_fire_date_utc && (
-            <li>launch?.static_fire_date_utc</li>
+            <li>{launch?.static_fire_date_utc}</li>
           )}
         </ul>
         {launch?.ships && launch?.ships.length > 0 && (
