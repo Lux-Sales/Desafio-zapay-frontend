@@ -3,11 +3,21 @@ import React, { useEffect, useState } from "react";
 import { Tab, TabBar } from "@rmwc/tabs";
 import { Container } from "./styles";
 import LaunchComponent from "../../components/Launch";
-import { Launch, getLastLaunch, getNextLaunch } from "../../service/api";
+import {
+  Launch,
+  getLastLaunch,
+  getNextLaunch,
+  getPastLaunchs,
+  getUpcomingLaunchs,
+} from "../../service/api";
+import ManyLaunchs from "../../components/ManyLaunchs";
 
 const MainPage: React.FC = () => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(3);
   const [launch, setLaunch] = useState<Launch | undefined>(undefined);
+  const [launchsArray, setLaunchsArray] = useState<Launch[] | undefined>(
+    undefined
+  );
   const handleChange = async (option: number) => {
     switch (option) {
       case 0:
@@ -17,17 +27,18 @@ const MainPage: React.FC = () => {
         break;
       case 1:
         setIndex(1);
+        const pastLaunchs = await getPastLaunchs();
+        setLaunchsArray(pastLaunchs.reverse());
         break;
       case 2:
         setIndex(2);
+        const upcomingLaunchs = await getUpcomingLaunchs();
+        setLaunchsArray(upcomingLaunchs);
         break;
-      case 3:
+      default:
         setIndex(3);
         const nextLaunch = await getNextLaunch();
         setLaunch(nextLaunch);
-        break;
-      default:
-        setIndex(-1);
     }
   };
   return (
@@ -51,6 +62,9 @@ const MainPage: React.FC = () => {
         </Tab>
       </TabBar>
       {(index === 0 || index === 3) && <LaunchComponent launch={launch} />}
+      {(index === 1 || index === 2) && (
+        <ManyLaunchs launchsArray={launchsArray} />
+      )}
     </Container>
   );
 };

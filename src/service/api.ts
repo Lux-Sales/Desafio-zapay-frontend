@@ -2,6 +2,11 @@
 /* eslint-disable import/prefer-default-export */
 import axios from "axios";
 
+export interface failureObject {
+  time: string;
+  altitude: string;
+  reason: string;
+}
 export interface coreObject {
   core: string;
   flight: number;
@@ -52,7 +57,7 @@ export interface Launch {
   window: number;
   rocket: string;
   success: boolean;
-  failures: [];
+  failures: failureObject[];
   details: string;
   crew: crewMember[];
   ships: string[];
@@ -84,5 +89,15 @@ export const getNextLaunch = async () => {
 
 export const getLastLaunch = async () => {
   const request = await api.get<Launch>("/latest");
+  return request.data;
+};
+
+export const getPastLaunchs = async () => {
+  const request = await api.get<Launch[]>("/past");
+  return request.data;
+};
+
+export const getUpcomingLaunchs = async () => {
+  const request = await api.get<Launch[]>("/upcoming");
   return request.data;
 };
