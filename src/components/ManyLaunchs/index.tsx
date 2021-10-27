@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FiCheck, FiX } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import { Launch } from "../../service/api";
 import { dateFormat } from "../../service/dateService";
@@ -51,7 +52,9 @@ export const ManyLaunchs = (props: Props) => {
                   <span>data: {dateFormat(launchParam.date_utc)}</span>
                 </header>
                 <footer>
-                  <span>Sucesso: {launchParam.success ? "Sim" : "Não"}</span>
+                  <span>
+                    Sucesso: {launchParam.success ? <FiCheck /> : <FiX />}
+                  </span>
                   <button type="button" onClick={() => detail(launchParam)}>
                     Ver mais
                   </button>

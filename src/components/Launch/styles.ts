@@ -6,6 +6,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
+  .titleDiv {
+    display: flex;
+    ul {
+      display: flex;
+    }
+  }
   header {
     display: flex;
     align-items: center;

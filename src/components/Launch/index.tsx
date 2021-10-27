@@ -1,5 +1,16 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
+import {
+  FiCheck,
+  FiDatabase,
+  FiUser,
+  FiX,
+  FiHardDrive,
+  FiCpu,
+  FiDisc,
+  FiBookOpen,
+  FiCamera,
+} from "react-icons/fi";
 import { Container } from "./styles";
 import { Launch } from "../../service/api";
 import {
@@ -26,12 +37,24 @@ export const LaunchComponent = (props: Props) => {
 
   return (
     <Container>
-      <h1 className="header-item">Lançamento:{launch?.name}</h1>
+      <div className="titleDiv">
+        <h1 className="header-item">Lançamento:{launch?.name}</h1>
+        <ul>
+          {launch?.crew.map((crewMember) => {
+            return (
+              <>
+                <FiUser title={crewMember.role} size={30} />
+                <br />
+              </>
+            );
+          })}
+        </ul>
+      </div>
       <header>
         <span className="header-item">ID do lançamento: {launch?.id}</span>
         {launch?.success && (
           <span className="header-item">
-            Sucesso: {launch?.success ? "Sim" : "Não"}
+            Sucesso: {launch?.success ? <FiCheck /> : <FiX />}
           </span>
         )}
         <span className="header-item">Foguete:{launch?.rocket}</span>
@@ -44,12 +67,12 @@ export const LaunchComponent = (props: Props) => {
       </header>
       <img src={imageLink(launch)} alt="" />
       <body>
-        <span>Plataforma de lançamento: {launch?.launchpad}</span>
-        <span>Lançado: {launch?.upcoming ? "Não" : "Sim"}</span>
+        <span>Lançado: {launch?.upcoming ? <FiX /> : <FiCheck />}</span>
         {launch?.net && <span>net: {launch.net}</span>}
         <span>Janela: {launch?.window}</span>
         <span>
-          Atualizado automaticamente: {launch?.auto_update ? "Sim" : "Não"}
+          Atualizado automaticamente:{" "}
+          {launch?.auto_update ? <FiCheck /> : <FiX />}
         </span>
         {launch?.tbd && <span>tbd: {launch.tbd}</span>}
         {launch?.details && (
@@ -86,9 +109,13 @@ export const LaunchComponent = (props: Props) => {
         )}
         {launch?.capsules.length !== 0 && (
           <ul>
-            Cápsulas:
+            <FiDatabase title="capsules" />
             {launch?.capsules.map((capsule) => {
-              return <li>{capsule}</li>;
+              return (
+                <li>
+                  <FiHardDrive title={capsule} />
+                </li>
+              );
             })}
           </ul>
         )}
@@ -98,21 +125,23 @@ export const LaunchComponent = (props: Props) => {
             <ul>
               {launch?.fairings.recovered && (
                 <li>
-                  Recuperada: {launch?.fairings.recovered ? "Sim" : "Não"}
+                  Recuperada:{" "}
+                  {launch?.fairings.recovered ? <FiCheck /> : <FiX />}
                 </li>
               )}
               {launch?.fairings.reused && (
-                <li>Reutilizada: {launch?.fairings.reused ? "Sim" : "Não"}</li>
+                <li>
+                  Reutilizada: {launch?.fairings.reused ? <FiCheck /> : <FiX />}
+                </li>
               )}
               {launch?.fairings.recovery_attempt && (
                 <li>
                   Tentativa de recuperação:
-                  {launch?.fairings.recovery_attempt ? "Sim" : "Não"}
+                  {launch?.fairings.recovery_attempt ? <FiCheck /> : <FiX />}
                 </li>
               )}
               {launch.fairings.ships && launch.fairings.ships.length > 0 && (
                 <>
-                  <span>Barcos:</span>
                   <ul>
                     {launch.fairings.ships.map((ship) => {
                       return <li>{ship}</li>;
@@ -123,51 +152,16 @@ export const LaunchComponent = (props: Props) => {
             </ul>
           </>
         )}
-        {launch?.crew.length !== 0 && (
-          <>
-            <span>Tripulação:</span>
-            <ul>
-              {launch?.crew.map((crewMember) => {
-                return (
-                  <>
-                    <li>id: {crewMember.crew}</li>
-                    <li>função: {crewMember.role}</li>
-                    <br />
-                  </>
-                );
-              })}
-            </ul>
-          </>
-        )}
-        <span>Data em diferentes formatos:</span>
-        <span>Precisão da data: {launch?.date_precision}</span>
-        <ul>
-          <li>{launch?.date_local}</li>
-          <li>{launch?.date_unix}</li>
-          <li>{launch?.date_utc}</li>
-          {launch?.static_fire_date_unix && (
-            <li>{launch?.static_fire_date_unix}</li>
-          )}
-          {launch?.static_fire_date_utc && (
-            <li>{launch?.static_fire_date_utc}</li>
-          )}
-        </ul>
         {launch?.ships && launch?.ships.length > 0 && (
           <>
-            <span>Barcos inclusos:</span>
+            <FiCpu title="ships" />
             <ul>
               {launch?.ships.map((ship) => {
-                return <li>{ship}</li>;
-              })}
-            </ul>
-          </>
-        )}
-        {launch?.payloads && (
-          <>
-            <span>Cargas úteis:</span>
-            <ul>
-              {launch?.payloads.map((payload) => {
-                return <li>{payload}</li>;
+                return (
+                  <li>
+                    <FiDisc title={ship} />
+                  </li>
+                );
               })}
             </ul>
           </>
@@ -183,17 +177,20 @@ export const LaunchComponent = (props: Props) => {
                     <ul>
                       <li>Voo: {core.flight}</li>
                       <li>
-                        Grades utilizadas: {core.gridfins ? "Sim" : "Não"}
+                        Grades utilizadas:{" "}
+                        {core.gridfins ? <FiCheck /> : <FiX />}
                       </li>
-                      <li>Pernas utilizadas: {core.legs ? "Sim" : "Não"}</li>
-                      <li>Reutiizado: {core.reused ? "Sim" : "Não"}</li>
+                      <li>
+                        Pernas utilizadas: {core.legs ? <FiCheck /> : <FiX />}
+                      </li>
+                      <li>Reutiizado: {core.reused ? <FiCheck /> : <FiX />}</li>
                       <li>
                         Tentativa de pouso:{" "}
-                        {core.landing_attempt ? "Sim" : "Não"}
+                        {core.landing_attempt ? <FiCheck /> : <FiX />}
                       </li>
                       <li>
                         Pouso com sucesso:{" "}
-                        {core.landing_success ? "Sim" : "Não"}
+                        {core.landing_success ? <FiCheck /> : <FiX />}
                       </li>
                       <li>Tipo de pouso: {core.landing_type}</li>
                       <li>Solo: {core.landpad}</li>
@@ -207,13 +204,10 @@ export const LaunchComponent = (props: Props) => {
         )}
       </body>
       <footer>
-        {launch?.launch_library_id && (
-          <span> Id na biblioteca: {launch?.launch_library_id}</span>
-        )}
         Links úteis:
         {imagesAddress && imagesAddress?.length > 0 && (
           <>
-            <span>Imagens:</span>
+            <FiBookOpen title="images" />
             <ul>
               {imagesAddress.map((address, index) => {
                 if (address) {
@@ -253,7 +247,7 @@ export const LaunchComponent = (props: Props) => {
         )}
         {launch?.links.webcast && (
           <>
-            <span>Vídeo do lançamento:</span>
+            <FiCamera title="video" />
             <li>
               <a href={launch?.links.webcast}>Vídeo</a>
             </li>
