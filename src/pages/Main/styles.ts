@@ -4,8 +4,7 @@ import { shade } from "polished";
 
 export const Container = styled.div`
   color: #ffffff;
-  background: url("background.jpg") no-repeat center;
-  background-size: cover;
+  height: 100vh;
   h1 {
     text-align: center;
   }
