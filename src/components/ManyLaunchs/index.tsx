@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { FiCheck, FiX } from "react-icons/fi";
+import { FiArrowLeft, FiCheck, FiX } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import { Launch } from "../../service/api";
 import { dateFormat } from "../../service/dateService";
 import LaunchComponent from "../Launch";
-import { Container } from "./styles";
+import { BackButton, Container } from "./styles";
 
 interface Props {
   launchsArray: Launch[] | undefined;
@@ -103,12 +103,17 @@ export const ManyLaunchs = (props: Props) => {
         </Container>
       )}
       {showComponent && (
-        <div>
-          <button type="button" onClick={() => setShowComponent(false)}>
-            Voltar
+        <BackButton>
+          <button
+            className="back-button"
+            type="button"
+            onClick={() => setShowComponent(false)}
+          >
+            <FiArrowLeft size={20} />
+            <span>Voltar</span>
           </button>
           <LaunchComponent launch={launch} />
-        </div>
+        </BackButton>
       )}
     </>
   );

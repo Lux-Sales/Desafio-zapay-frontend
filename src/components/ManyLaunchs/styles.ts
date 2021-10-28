@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import { shade } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -21,6 +22,10 @@ export const Container = styled.div`
         height: 5%;
         button {
           width: 100%;
+          background: #3b3737;
+        }
+        button:disabled {
+          background-color: ${shade("0.8", "#3b3737")};
         }
       }
     }
@@ -30,5 +35,19 @@ export const Container = styled.div`
     padding: 5px;
     border: solid 3px #5879e6;
     border-radius: 15px;
+  }
+`;
+
+export const BackButton = styled.div`
+  button {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    svg {
+      margin-left: 10%;
+    }
+    span {
+      margin-left: 30%;
+    }
   }
 `;

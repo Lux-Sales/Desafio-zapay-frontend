@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import styled from "styled-components";
-import { shade } from "polished";
 
 export const Container = styled.div`
   color: #ffffff;
@@ -12,16 +11,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  button {
-    height: 50px;
-    width: 300px;
-    color: #fff;
-    border-radius: 5px;
-    background-color: #3b3737;
-  }
-  button:disabled {
-    background-color: ${shade("0.8", "#3b3737")};
-  }
+
   a {
     text-decoration: none;
     color: #788ff3;

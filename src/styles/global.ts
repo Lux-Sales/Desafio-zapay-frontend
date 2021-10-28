@@ -1,3 +1,4 @@
+import { shade } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
@@ -17,7 +18,11 @@ body, input, button{
 h1,h2,h3,h4,h5,h6,strong{
   font-weight: 500;
 }
-button{
-  cursor: pointer;
-}
+button {
+    height: 50px;
+    width: 300px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 `;
