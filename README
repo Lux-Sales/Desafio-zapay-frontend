@@ -1,0 +1,6 @@
+Link para o site hospedado no firebase:
+https://spacex-launchs.web.app/
+
+Para rodar o projeto localmente:
+
+yarn && yarn start
