@@ -4,3 +4,6 @@ https://spacex-launchs.web.app/
 Para rodar o projeto localmente:
 
 yarn && yarn start
+
+Foi utilizado react e typescript para desenvolver a aplicação, com várias bibliotecas para
+tratar da estilização, e hosting no firebase.
