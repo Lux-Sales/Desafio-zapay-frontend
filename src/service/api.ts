@@ -79,7 +79,7 @@ export interface Launch {
 }
 
 const api = axios.create({
-  baseURL: "https://api.spacexdata.com/v5/launches",
+  baseURL: "",
 });
 
 export const getNextLaunch = async () => {

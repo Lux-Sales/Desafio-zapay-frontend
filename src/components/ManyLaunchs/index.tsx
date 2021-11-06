@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Launch } from "../../service/api";
 import { dateFormat } from "../../service/dateService";
 import LaunchComponent from "../Launch";
+import NoAPIComponent from "../NoAPI";
 import { BackButton, Container } from "./styles";
 
 interface Props {
@@ -41,7 +42,7 @@ export const ManyLaunchs = (props: Props) => {
 
   return (
     <>
-      {!showComponent && (
+      {!showComponent && launchsArray && (
         <Container>
           {pagedItems?.map((launchParam) => {
             return (
@@ -115,6 +116,7 @@ export const ManyLaunchs = (props: Props) => {
           <LaunchComponent launch={launch} />
         </BackButton>
       )}
+      {!launchsArray && <NoAPIComponent />}
     </>
   );
 };
